@@ -2,11 +2,14 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import SocialProof from "./components/SocialProof";
 import Features from "./components/Features";
+import Asili from "./components/Asili";
 import Showcase from "./components/Showcase";
 import Benefits from "./components/Benefits";
 import Testimonials from "./components/Testimonials";
+import About from "./components/About";
 import Pricing from "./components/Pricing";
 import Faq from "./components/Faq";
+import Contact from "./components/Contact";
 import Cta from "./components/Cta";
 import Footer from "./components/Footer";
 
@@ -24,11 +27,14 @@ export default function App() {
         <Hero />
         <SocialProof />
         <Features />
+        <Asili />
         <Showcase />
         <Benefits />
         <Testimonials />
+        <About />
         <Pricing />
         <Faq />
+        <Contact />
         <Cta />
       </main>
       <Footer />

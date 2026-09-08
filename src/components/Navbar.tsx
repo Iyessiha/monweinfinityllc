@@ -4,11 +4,11 @@ import { InfinityLogo, PrimaryButton } from "./ui";
 
 const links = [
   { label: "Features", href: "#features" },
+  { label: "ASILI", href: "#asili" },
   { label: "Platform", href: "#platform" },
-  { label: "Benefits", href: "#benefits" },
-  { label: "Testimonials", href: "#testimonials" },
   { label: "Pricing", href: "#pricing" },
-  { label: "FAQ", href: "#faq" },
+  { label: "À propos", href: "#about" },
+  { label: "Contact", href: "#contact" },
 ];
 
 export default function Navbar() {
@@ -52,7 +52,7 @@ export default function Navbar() {
           <a href="#top" className="flex items-center gap-2.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-400 rounded-lg">
             <InfinityLogo className="h-6 w-12" />
             <span className="font-display text-lg font-bold tracking-tight text-white">
-              Monwe<span className="text-brand-400"> Infinity</span>
+              Mon<span className="text-brand-400">We</span> Infinity
             </span>
           </a>
 

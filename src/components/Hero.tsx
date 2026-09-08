@@ -74,9 +74,9 @@ export default function Hero() {
             className={cn("mx-auto mt-6 max-w-2xl text-base leading-relaxed text-slate-400 sm:text-lg lg:text-xl", entrance)}
             style={{ transitionDelay: "270ms" }}
           >
-            Monwe Infinity is the all-in-one growth platform for the self-employed, ambitious
-            companies, e-commerce brands, and dropshippers — automate operations, unlock insights,
-            and scale on infrastructure built for infinity.
+            MonWe Infinity est la plateforme de croissance tout-en-un pour les indépendants,
+            entreprises ambitieuses, e-commerçants et dropshippers — automatisez vos opérations,
+            exploitez vos données, et développez-vous sur une infrastructure bâtie pour l'infini.
           </p>
 
           <div
