@@ -3,6 +3,7 @@ import Hero from "./components/Hero";
 import SocialProof from "./components/SocialProof";
 import Features from "./components/Features";
 import Asili from "./components/Asili";
+import InfinityPay from "./components/InfinityPay";
 import Showcase from "./components/Showcase";
 import Benefits from "./components/Benefits";
 import Testimonials from "./components/Testimonials";
@@ -28,6 +29,7 @@ export default function App() {
         <SocialProof />
         <Features />
         <Asili />
+        <InfinityPay />
         <Showcase />
         <Benefits />
         <Testimonials />

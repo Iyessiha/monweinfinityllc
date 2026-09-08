@@ -1,19 +1,18 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { cn } from "../utils/cn";
 import { GhostButton, PrimaryButton } from "./ui";
 
-const stats = [
-  { value: "12,400+", label: "Businesses scaling" },
-  { value: "$480M+", label: "Revenue processed" },
-  { value: "99.99%", label: "Platform uptime" },
-];
+const statsKeys = ["businesses", "revenue", "uptime"] as const;
+const statsValues = ["12,400+", "$480M+", "99.99%"];
 
 export default function Hero() {
+  const { t } = useTranslation();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const t = requestAnimationFrame(() => setMounted(true));
-    return () => cancelAnimationFrame(t);
+    const timer = requestAnimationFrame(() => setMounted(true));
+    return () => cancelAnimationFrame(timer);
   }, []);
 
   const entrance = cn(
@@ -28,7 +27,6 @@ export default function Hero() {
         <div className="absolute -top-40 left-1/2 h-[560px] w-[900px] -translate-x-1/2 rounded-full bg-brand-600/20 blur-[140px] animate-pulse-soft" />
         <div className="absolute top-1/3 -left-40 h-[420px] w-[420px] rounded-full bg-glow-cyan/10 blur-[120px] animate-float-slow" />
         <div className="absolute top-1/4 -right-32 h-[380px] w-[380px] rounded-full bg-glow-fuchsia/10 blur-[120px] animate-float" />
-        {/* Grid */}
         <div
           className="absolute inset-0 opacity-[0.15]"
           style={{
@@ -49,9 +47,9 @@ export default function Hero() {
               className="group inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/5 py-1.5 pl-1.5 pr-4 text-sm text-slate-300 backdrop-blur transition hover:border-brand-400/40 hover:bg-white/10"
             >
               <span className="rounded-full bg-gradient-to-r from-brand-600 to-glow-violet px-2.5 py-0.5 text-xs font-semibold text-white">
-                New
+                {t("hero.badge")}
               </span>
-              Infinity OS 3.0 — AI-native commerce engine
+              {t("hero.badgeText")}
               <svg
                 className="h-3.5 w-3.5 text-brand-300 transition-transform group-hover:translate-x-0.5"
                 viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"
@@ -65,18 +63,17 @@ export default function Hero() {
             className={cn("mt-8 font-display text-4xl font-bold leading-[1.08] tracking-tight text-white sm:text-6xl lg:text-7xl", entrance)}
             style={{ transitionDelay: "150ms" }}
           >
-            Innovation without
+            {t("hero.title1")}
             <br />
-            <span className="text-gradient">limits. Growth</span> without friction.
+            <span className="text-gradient">{t("hero.title2")}</span>{" "}
+            {t("hero.title3")}
           </h1>
 
           <p
             className={cn("mx-auto mt-6 max-w-2xl text-base leading-relaxed text-slate-400 sm:text-lg lg:text-xl", entrance)}
             style={{ transitionDelay: "270ms" }}
           >
-            MonWe Infinity est la plateforme de croissance tout-en-un pour les indépendants,
-            entreprises ambitieuses, e-commerçants et dropshippers — automatisez vos opérations,
-            exploitez vos données, et développez-vous sur une infrastructure bâtie pour l'infini.
+            {t("hero.subtitle")}
           </p>
 
           <div
@@ -84,13 +81,13 @@ export default function Hero() {
             style={{ transitionDelay: "390ms" }}
           >
             <PrimaryButton href="#pricing" className="w-full sm:w-auto px-8 py-4 text-base">
-              Start free — no card required
+              {t("hero.cta")}
             </PrimaryButton>
             <GhostButton href="#platform" className="w-full sm:w-auto px-8 py-4 text-base">
               <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M8 5.14v14l11-7-11-7z" />
               </svg>
-              Watch the platform
+              {t("hero.watchPlatform")}
             </GhostButton>
           </div>
 
@@ -98,11 +95,11 @@ export default function Hero() {
             className={cn("mx-auto mt-14 grid max-w-2xl grid-cols-1 gap-4 sm:grid-cols-3", entrance)}
             style={{ transitionDelay: "520ms" }}
           >
-            {stats.map((s) => (
-              <div key={s.label} className="glass rounded-2xl px-6 py-5 tilt-card">
-                <div className="font-display text-2xl font-bold text-white">{s.value}</div>
+            {statsKeys.map((key, i) => (
+              <div key={key} className="glass rounded-2xl px-6 py-5 tilt-card">
+                <div className="font-display text-2xl font-bold text-white">{statsValues[i]}</div>
                 <div className="mt-1 text-xs font-medium uppercase tracking-widest text-slate-500">
-                  {s.label}
+                  {t(`hero.stats.${key}`)}
                 </div>
               </div>
             ))}
@@ -116,7 +113,6 @@ export default function Hero() {
         >
           <div aria-hidden="true" className="absolute -inset-8 rounded-[2.5rem] bg-gradient-to-r from-brand-600/25 via-glow-fuchsia/15 to-glow-cyan/25 blur-3xl" />
           <div className="ring-gradient relative overflow-hidden rounded-2xl bg-ink-900 shadow-2xl shadow-black/60 sm:rounded-3xl">
-            {/* window chrome */}
             <div className="flex items-center gap-2 border-b border-white/5 bg-white/[0.03] px-5 py-3.5">
               <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
               <span className="h-3 w-3 rounded-full bg-[#febc2e]" />
@@ -127,13 +123,12 @@ export default function Hero() {
             </div>
             <img
               src="images/dashboard.png"
-              alt="Monwe Infinity analytics dashboard showing revenue growth, KPIs, and order insights"
+              alt="MonWe Infinity analytics dashboard"
               className="w-full"
               loading="eager"
             />
           </div>
 
-          {/* Floating cards */}
           <div className="glass-strong absolute -left-4 top-1/4 hidden w-52 rounded-2xl p-4 shadow-2xl animate-float md:block lg:-left-16">
             <div className="flex items-center gap-3">
               <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-500/15 text-emerald-400">

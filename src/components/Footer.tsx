@@ -1,43 +1,5 @@
+import { useTranslation } from "react-i18next";
 import { InfinityLogo } from "./ui";
-
-const columns = [
-  {
-    heading: "Produit",
-    links: [
-      { label: "Features", href: "#features" },
-      { label: "Plateforme", href: "#platform" },
-      { label: "Tarifs", href: "#pricing" },
-      { label: "ASILI App", href: "#asili" },
-      { label: "FAQ", href: "#faq" },
-    ],
-  },
-  {
-    heading: "Solutions",
-    links: [
-      { label: "Indépendants", href: "#benefits" },
-      { label: "Entreprises", href: "#benefits" },
-      { label: "E-Commerce", href: "#benefits" },
-      { label: "Dropshipping", href: "#benefits" },
-    ],
-  },
-  {
-    heading: "Société",
-    links: [
-      { label: "À propos", href: "#about" },
-      { label: "Contact", href: "#contact" },
-      { label: "Mentions légales", href: "#about" },
-    ],
-  },
-  {
-    heading: "Contact",
-    links: [
-      { label: "monweci@gmail.com", href: "mailto:monweci@gmail.com" },
-      { label: "+225 05 00 44 64 64", href: "tel:+2250500446464" },
-      { label: "Albuquerque, NM 87110", href: "#about" },
-      { label: "Abidjan, Côte d'Ivoire", href: "#about" },
-    ],
-  },
-];
 
 const socials = [
   {
@@ -59,6 +21,48 @@ const socials = [
 ];
 
 export default function Footer() {
+  const { t } = useTranslation();
+
+  const columns = [
+    {
+      heading: t("footer.columns.product"),
+      links: [
+        { label: t("footer.links.features"), href: "#features" },
+        { label: t("footer.links.platform"), href: "#platform" },
+        { label: t("footer.links.pricing"), href: "#pricing" },
+        { label: t("footer.links.asili"), href: "#asili" },
+        { label: t("footer.links.infinityPay"), href: "#infinity-pay" },
+        { label: t("footer.links.faq"), href: "#faq" },
+      ],
+    },
+    {
+      heading: t("footer.columns.solutions"),
+      links: [
+        { label: t("footer.links.selfEmployed"), href: "#benefits" },
+        { label: t("footer.links.companies"), href: "#benefits" },
+        { label: t("footer.links.ecommerce"), href: "#benefits" },
+        { label: t("footer.links.dropshipping"), href: "#benefits" },
+      ],
+    },
+    {
+      heading: t("footer.columns.company"),
+      links: [
+        { label: t("footer.links.about"), href: "#about" },
+        { label: t("footer.links.contactLink"), href: "#contact" },
+        { label: t("footer.links.legal"), href: "#about" },
+      ],
+    },
+    {
+      heading: t("footer.columns.contact"),
+      links: [
+        { label: "monweci@gmail.com", href: "mailto:monweci@gmail.com" },
+        { label: "+225 05 00 44 64 64", href: "tel:+2250500446464" },
+        { label: "Albuquerque, NM 87110", href: "#about" },
+        { label: "Abidjan, Côte d'Ivoire", href: "#about" },
+      ],
+    },
+  ];
+
   return (
     <footer className="relative border-t border-white/5 bg-ink-950">
       <div
@@ -75,9 +79,7 @@ export default function Footer() {
               </span>
             </a>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-slate-400">
-              Plateforme de croissance tout-en-un et éditeur de l'application{" "}
-              <span className="text-brand-300 font-medium">ASILI — Noms d'Afrique</span>.
-              Innovation sans limites, croissance sans friction.
+              {t("footer.description")}
             </p>
 
             <address className="mt-6 text-sm not-italic leading-relaxed text-slate-500">
@@ -137,10 +139,14 @@ export default function Footer() {
 
         <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/5 pt-8 sm:flex-row">
           <p className="text-xs text-slate-500">
-            © {new Date().getFullYear()} MonWe Infinity LLC · LLC immatriculée au Nouveau-Mexique, USA · N° dépôt 3213688. Tous droits réservés.
+            © {new Date().getFullYear()} MonWe Infinity LLC · {t("footer.copyright")}
           </p>
           <div className="flex gap-6">
-            {["Privacy Policy", "Terms of Service", "Cookie Settings"].map((item) => (
+            {[
+              t("footer.links.privacy"),
+              t("footer.links.terms"),
+              t("footer.links.cookies"),
+            ].map((item) => (
               <a
                 key={item}
                 href="#top"
