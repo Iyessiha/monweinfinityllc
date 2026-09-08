@@ -1,23 +1,5 @@
+import { useTranslation } from "react-i18next";
 import { InfinityLogo } from "./ui";
-
-const columns = [
-  {
-    heading: "Product",
-    links: ["Features", "Platform", "Pricing", "Integrations", "Changelog", "Roadmap"],
-  },
-  {
-    heading: "Solutions",
-    links: ["Self-Employed", "Companies", "E-Commerce", "Dropshipping", "Agencies", "Enterprise"],
-  },
-  {
-    heading: "Resources",
-    links: ["Documentation", "API Reference", "Blog", "Community", "Help Center", "Status"],
-  },
-  {
-    heading: "Company",
-    links: ["About", "Careers", "Press", "Partners", "Legal", "Contact"],
-  },
-];
 
 const socials = [
   {
@@ -39,6 +21,48 @@ const socials = [
 ];
 
 export default function Footer() {
+  const { t } = useTranslation();
+
+  const columns = [
+    {
+      heading: t("footer.columns.product"),
+      links: [
+        { label: t("footer.links.features"), href: "#features" },
+        { label: t("footer.links.platform"), href: "#platform" },
+        { label: t("footer.links.pricing"), href: "#pricing" },
+        { label: t("footer.links.asili"), href: "#asili" },
+        { label: t("footer.links.infinityPay"), href: "#infinity-pay" },
+        { label: t("footer.links.faq"), href: "#faq" },
+      ],
+    },
+    {
+      heading: t("footer.columns.solutions"),
+      links: [
+        { label: t("footer.links.selfEmployed"), href: "#benefits" },
+        { label: t("footer.links.companies"), href: "#benefits" },
+        { label: t("footer.links.ecommerce"), href: "#benefits" },
+        { label: t("footer.links.dropshipping"), href: "#benefits" },
+      ],
+    },
+    {
+      heading: t("footer.columns.company"),
+      links: [
+        { label: t("footer.links.about"), href: "#about" },
+        { label: t("footer.links.contactLink"), href: "#contact" },
+        { label: t("footer.links.legal"), href: "#about" },
+      ],
+    },
+    {
+      heading: t("footer.columns.contact"),
+      links: [
+        { label: "monweci@gmail.com", href: "mailto:monweci@gmail.com" },
+        { label: "+225 05 00 44 64 64", href: "tel:+2250500446464" },
+        { label: "Albuquerque, NM 87110", href: "#about" },
+        { label: "Abidjan, Côte d'Ivoire", href: "#about" },
+      ],
+    },
+  ];
+
   return (
     <footer className="relative border-t border-white/5 bg-ink-950">
       <div
@@ -51,20 +75,27 @@ export default function Footer() {
             <a href="#top" className="flex w-fit items-center gap-2.5 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-400">
               <InfinityLogo className="h-6 w-12" />
               <span className="font-display text-lg font-bold tracking-tight text-white">
-                Monwe<span className="text-brand-400"> Infinity</span>
+                Mon<span className="text-brand-400">We</span> Infinity
               </span>
             </a>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-slate-400">
-              The all-in-one growth platform for the self-employed, companies, e-commerce brands,
-              and dropshippers. Innovation without limits.
+              {t("footer.description")}
             </p>
 
             <address className="mt-6 text-sm not-italic leading-relaxed text-slate-500">
-              <span className="font-semibold text-slate-300">Monwe Infinity LLC</span>
+              <span className="font-semibold text-slate-300">MonWe Infinity LLC</span>
               <br />
               1209 Mountain Road PL NE, STE R
               <br />
               Albuquerque, NM 87110, USA
+              <br />
+              <a href="mailto:monweci@gmail.com" className="mt-1 inline-block transition hover:text-slate-300">
+                monweci@gmail.com
+              </a>
+              <br />
+              <a href="tel:+2250500446464" className="transition hover:text-slate-300">
+                +225 05 00 44 64 64
+              </a>
             </address>
 
             <div className="mt-6 flex gap-3">
@@ -91,12 +122,12 @@ export default function Footer() {
                 </h3>
                 <ul className="mt-4 space-y-2.5">
                   {col.links.map((link) => (
-                    <li key={link}>
+                    <li key={link.label}>
                       <a
-                        href="#top"
+                        href={link.href}
                         className="text-sm text-slate-400 transition-colors duration-200 hover:text-white"
                       >
-                        {link}
+                        {link.label}
                       </a>
                     </li>
                   ))}
@@ -108,10 +139,14 @@ export default function Footer() {
 
         <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/5 pt-8 sm:flex-row">
           <p className="text-xs text-slate-500">
-            © {new Date().getFullYear()} Monwe Infinity LLC · Registered in New Mexico, USA. All rights reserved.
+            © {new Date().getFullYear()} MonWe Infinity LLC · {t("footer.copyright")}
           </p>
           <div className="flex gap-6">
-            {["Privacy Policy", "Terms of Service", "Cookie Settings"].map((item) => (
+            {[
+              t("footer.links.privacy"),
+              t("footer.links.terms"),
+              t("footer.links.cookies"),
+            ].map((item) => (
               <a
                 key={item}
                 href="#top"

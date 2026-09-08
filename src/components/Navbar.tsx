@@ -1,19 +1,23 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { cn } from "../utils/cn";
 import { InfinityLogo, PrimaryButton } from "./ui";
-
-const links = [
-  { label: "Features", href: "#features" },
-  { label: "Platform", href: "#platform" },
-  { label: "Benefits", href: "#benefits" },
-  { label: "Testimonials", href: "#testimonials" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "FAQ", href: "#faq" },
-];
+import LangSwitcher from "./LangSwitcher";
 
 export default function Navbar() {
+  const { t } = useTranslation();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+
+  const links = [
+    { label: t("nav.features"), href: "#features" },
+    { label: t("nav.asili"), href: "#asili" },
+    { label: t("nav.infinityPay"), href: "#infinity-pay" },
+    { label: t("nav.platform"), href: "#platform" },
+    { label: t("nav.pricing"), href: "#pricing" },
+    { label: t("nav.about"), href: "#about" },
+    { label: t("nav.contact"), href: "#contact" },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -52,16 +56,16 @@ export default function Navbar() {
           <a href="#top" className="flex items-center gap-2.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-400 rounded-lg">
             <InfinityLogo className="h-6 w-12" />
             <span className="font-display text-lg font-bold tracking-tight text-white">
-              Monwe<span className="text-brand-400"> Infinity</span>
+              Mon<span className="text-brand-400">We</span> Infinity
             </span>
           </a>
 
-          <ul className="hidden items-center gap-1 lg:flex">
+          <ul className="hidden items-center gap-0.5 xl:flex">
             {links.map((link) => (
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className="rounded-full px-4 py-2 text-sm font-medium text-slate-300 transition-colors duration-200 hover:bg-white/5 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-400"
+                  className="rounded-full px-3 py-2 text-sm font-medium text-slate-300 transition-colors duration-200 hover:bg-white/5 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-400"
                 >
                   {link.label}
                 </a>
@@ -69,9 +73,10 @@ export default function Navbar() {
             ))}
           </ul>
 
-          <div className="hidden lg:block">
+          <div className="hidden xl:flex items-center gap-3">
+            <LangSwitcher />
             <PrimaryButton href="#pricing" className="px-6 py-2.5">
-              Start free
+              {t("nav.startFree")}
             </PrimaryButton>
           </div>
 
@@ -80,7 +85,7 @@ export default function Navbar() {
             onClick={() => setOpen(!open)}
             aria-expanded={open}
             aria-label={open ? "Close menu" : "Open menu"}
-            className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white transition hover:bg-white/10 lg:hidden"
+            className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white transition hover:bg-white/10 xl:hidden"
           >
             <div className="relative h-4 w-5">
               <span
@@ -109,7 +114,7 @@ export default function Navbar() {
       {/* Mobile menu */}
       <div
         className={cn(
-          "fixed inset-x-0 top-[72px] z-40 mx-4 origin-top rounded-2xl glass-strong p-6 shadow-2xl transition-all duration-300 lg:hidden",
+          "fixed inset-x-0 top-[72px] z-40 mx-4 origin-top rounded-2xl glass-strong p-6 shadow-2xl transition-all duration-300 xl:hidden",
           open ? "pointer-events-auto scale-100 opacity-100" : "pointer-events-none scale-95 opacity-0"
         )}
       >
@@ -126,9 +131,10 @@ export default function Navbar() {
             </li>
           ))}
         </ul>
-        <div className="mt-4 border-t border-white/10 pt-4">
+        <div className="mt-4 border-t border-white/10 pt-4 flex flex-col gap-3">
+          <LangSwitcher className="w-fit" />
           <PrimaryButton href="#pricing" className="w-full">
-            Start free
+            {t("nav.startFree")}
           </PrimaryButton>
         </div>
       </div>
