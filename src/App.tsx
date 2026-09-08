@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import SocialProof from "./components/SocialProof";
@@ -9,8 +10,17 @@ import Pricing from "./components/Pricing";
 import Faq from "./components/Faq";
 import Cta from "./components/Cta";
 import Footer from "./components/Footer";
+import InfinityPay from "./pages/InfinityPay";
+
+type Page = "home" | "pay";
 
 export default function App() {
+  const [page, setPage] = useState<Page>("home");
+
+  if (page === "pay") {
+    return <InfinityPay onBack={() => setPage("home")} />;
+  }
+
   return (
     <div className="min-h-screen bg-ink-950 text-slate-200">
       <a
@@ -19,9 +29,9 @@ export default function App() {
       >
         Skip to content
       </a>
-      <Navbar />
+      <Navbar onNavigatePay={() => setPage("pay")} />
       <main>
-        <Hero />
+        <Hero onNavigatePay={() => setPage("pay")} />
         <SocialProof />
         <Features />
         <Showcase />

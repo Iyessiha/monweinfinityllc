@@ -8,7 +8,8 @@ const stats = [
   { value: "99.99%", label: "Platform uptime" },
 ];
 
-export default function Hero() {
+export default function Hero({ onNavigatePay }: { onNavigatePay?: () => void }) {
+  void onNavigatePay; // available for future use
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {

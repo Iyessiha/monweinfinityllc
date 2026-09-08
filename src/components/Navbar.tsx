@@ -11,7 +11,7 @@ const links = [
   { label: "FAQ", href: "#faq" },
 ];
 
-export default function Navbar() {
+export default function Navbar({ onNavigatePay }: { onNavigatePay?: () => void }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -69,7 +69,20 @@ export default function Navbar() {
             ))}
           </ul>
 
-          <div className="hidden lg:block">
+          <div className="hidden lg:flex items-center gap-3">
+            {onNavigatePay && (
+              <button
+                type="button"
+                onClick={onNavigatePay}
+                className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-sm font-semibold text-emerald-300 transition-all hover:bg-emerald-500/20 hover:text-emerald-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-400"
+              >
+                <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <rect x="2" y="5" width="20" height="14" rx="2" />
+                  <path d="M2 10h20" />
+                </svg>
+                Infinity Pay
+              </button>
+            )}
             <PrimaryButton href="#pricing" className="px-6 py-2.5">
               Start free
             </PrimaryButton>
@@ -126,7 +139,20 @@ export default function Navbar() {
             </li>
           ))}
         </ul>
-        <div className="mt-4 border-t border-white/10 pt-4">
+        <div className="mt-4 border-t border-white/10 pt-4 flex flex-col gap-2">
+          {onNavigatePay && (
+            <button
+              type="button"
+              onClick={() => { setOpen(false); onNavigatePay(); }}
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-6 py-3 text-sm font-semibold text-emerald-300 transition hover:bg-emerald-500/20"
+            >
+              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <rect x="2" y="5" width="20" height="14" rx="2" />
+                <path d="M2 10h20" />
+              </svg>
+              Infinity Pay
+            </button>
+          )}
           <PrimaryButton href="#pricing" className="w-full">
             Start free
           </PrimaryButton>
